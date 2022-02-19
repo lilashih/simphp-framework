@@ -1,0 +1,134 @@
+<?php
+
+namespace Tests\Feature\Api;
+
+use App\Repositories\{{ className }}Repository;
+use App\Http\Resources\{{ className }}Resource;
+use Lilashih\Simphp\Test\ApiTest;
+
+class {{ className }}Test extends ApiTest
+{
+    public function repo()
+    {
+        return new {{ className }}Repository();
+    }
+
+    public function collectionKey(): string
+    {
+        return {{ className }}Resource::$key['collection'];
+    }
+
+    public function resourceKey(): string
+    {
+        return {{ className }}Resource::$key['resource'];
+    }
+
+    public function urlKey(): string
+    {
+        return '{{ route }}';
+    }
+
+    public function getStoreData()
+    {
+        return $this->getUpdateData();
+    }
+
+    public function getUpdateData()
+    {
+        return [
+            'name' => random_str(200),
+        ];
+    }
+
+    /**
+     * Test list API
+     *
+     * @group {{ group }}
+     */
+    public function testIndex(): array
+    {
+        return parent::indexTest();
+    }
+
+    /**
+     * Test detail API
+     *
+     * @depends testIndex
+     *
+     * @group {{ group }}
+     */
+    public function testShow(array $items)
+    {
+        parent::showTest($items);
+    }
+
+    /**
+     * Test create API
+     *
+     * @group {{ group }}
+     */
+    public function testStore(): array
+    {
+        return parent::storeTest();
+    }
+
+    /**
+     * Test list API for searching 
+     *
+     * @depends testStore
+     *
+     * @group {{ group }}
+     */
+    public function testIndexByQuery(array $search)
+    {
+        $items = parent::callIndexByQuery([
+            'name' => $search['name'],
+        ]);
+
+        $this->assertIsArray($items);
+        foreach ($items as $item) {
+            $this->assertArrayHasKey('id', $item);
+            $this->assertArrayHasKey('name', $item);
+        }
+    }
+
+    /**
+     * Test API for avoiding adding dulicate data
+     *
+     * @group {{ group }}
+     */
+    public function testStoreError()
+    {
+        parent::storeDuplicateTest('name');
+    }
+
+    /**
+     * Test update API
+     *
+     * @group {{ group }}
+     */
+    public function testUpdate()
+    {
+        parent::updateTest();
+    }
+
+    /**
+     * Test delete API
+     *
+     * @group {{ group }}
+     */
+    public function testDestroy()
+    {
+        parent::destroyTest();
+    }
+
+    /**
+     * Test list API for searching soft deleted data
+     *
+     * @group {{ group }}
+     */
+    public function testIndexByMode()
+    {
+        parent::indexByModeTest();
+    }
+}

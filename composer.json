@@ -1,0 +1,45 @@
+{
+    "name": "lilashih/simphp-framework",
+    "description": "The API Framework.",
+    "keywords": ["framework", "php"],
+    "license": "MIT",
+    "homepage": "https://github.com/lilashih/simphp-framework",
+    "support": {
+        "issues": "https://github.com/lilashih/simphp-framework/issues",
+        "source": "https://github.com/lilashih/simphp-framework"
+    },
+    "authors": [
+        {
+            "name": "Lila Shih",
+            "email": "m1339xt@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.0",
+        "firebase/php-jwt": "^5.2",
+        "illuminate/database": "^5.8",
+        "monolog/monolog": "^2.0",
+        "rakit/validation": "^1.4",
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0",
+        "zircote/swagger-php": "^3.0"
+    },
+    "autoload": {
+        "files": [
+            "src/functions.php"
+        ],
+        "psr-4": {
+            "Lilashih\\Simphp\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

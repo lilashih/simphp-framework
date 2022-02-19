@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Lilashih\Simphp\Resource\BaseResource;
+
+class {{ className }}Resource extends BaseResource
+{
+    public static $key = [
+        'collection' => '{{ route }}',
+        'resource' => '{{ route }}',
+    ];
+
+    public static function toArray(array $data): array
+    {
+        return $data;
+    }
+}
+
+/**
+ * @OA\Schema(
+ *   schema="{{ className }}",
+ *   allOf={
+ *     @OA\Schema(
+ *       @OA\Property(property="id", type="integer", description="id", example=3),
+ *     ),
+ *     @OA\Property(ref="#/components/schemas/{{ className }}Request"),
+ *   }
+ * )
+ */
